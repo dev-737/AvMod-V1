@@ -78,7 +78,7 @@ class moderation(commands.Cog, name="moderation"):
   @commands.command(aliases=["setprefix"])
   @commands.has_permissions(administrator=True)
   @commands.cooldown(1, 5, commands.BucketType.guild)
-  async def set_prefix(self, ctx, *, pre='!'):
+  async def set_prefix(self, ctx, *, pre='av!'):
       """
       Set a custom prefix for a guild
       """
@@ -99,41 +99,9 @@ class moderation(commands.Cog, name="moderation"):
         print (iid.content)
         await toleave.leave()
         print (iid.content)
-        
-  @commands.command(hidden=True)
-  async def name(self, ctx):
-    await ctx.send('What is your name')
-    name = await self.bot.wait_for('message')
-    await ctx.send('Which Country do you live in')
-    country = await self.bot.wait_for('message')
-    await ctx.send(f'>>> Name: {name.content}\nCountry: {country.content}')
-
+      
 
   @commands.command()
-  @commands.has_permissions(kick_members=True)
-  async def kick(self, ctx, member: discord.Member=None, *, reason="No Reason Provided."):
-
-    """Kicks the mentioned member."""
-
-    if not member:
-      embed=discord.Embed(title="<a:ThonkSpin:771004484884889610> Syntax Error", description="Please ping or use the id of the member you want to kick.\n\nex.`.kick <@User> [reason]`/`.kick <ID> [Reason]`", color=discord.Colour.red())
-      await ctx.send(embed=embed)
-      return
-    dont_message=True
-    try:
-      await member.kick(reason=f'Moderator: {ctx.author}\nReason: {reason}')            
-      embed=discord.Embed(description=f"<a:pikadance:771004586886299648> {member} was kicked!")  
-      await ctx.send(embed=embed)
-    except discord.errors.Forbidden:
-      await ctx.send("<:yikes:771264130430402591> Sorry, I do not have enough permissions to kick that member.")
-      dont_message=False
-
-    if dont_message==True:
-      await member.send(f"<a:alarm:772727409764990989> You were kicked from **{ctx.guild.name}**.\n\nReason: **{reason}**")
-    
-    
-
-  @commands.command(description="")
   @commands.has_permissions(ban_members=True)
   async def ban(self, ctx, member: discord.Member=None, *, reason="No Reason Provided."):
 
@@ -171,6 +139,30 @@ class moderation(commands.Cog, name="moderation"):
             await ctx.send("<a:wrong:765080446937202698> Sorry, I couldn't find that user.")
         else:
             await ctx.send("<a:wrong:765080446937202698> Sorry, I couldn't find that user.")
+
+  @commands.command()
+  @commands.has_permissions(kick_members=True)
+  async def kick(self, ctx, member: discord.Member=None, *, reason="No Reason Provided."):
+
+    """Kicks the mentioned member."""
+
+    if not member:
+      embed=discord.Embed(title="<a:ThonkSpin:771004484884889610> Syntax Error", description="Please ping or use the id of the member you want to kick.\n\nex.`.kick <@User> [reason]`/`.kick <ID> [Reason]`", color=discord.Colour.red())
+      await ctx.send(embed=embed)
+      return
+    dont_message=True
+    try:
+      await member.kick(reason=f'Moderator: {ctx.author}\nReason: {reason}')            
+      embed=discord.Embed(description=f"<a:pikadance:771004586886299648> {member} was kicked!")  
+      await ctx.send(embed=embed)
+    except discord.errors.Forbidden:
+      await ctx.send("<:yikes:771264130430402591> Sorry, I do not have enough permissions to kick that member.")
+      dont_message=False
+
+    if dont_message==True:
+      await member.send(f"<a:alarm:772727409764990989> You were kicked from **{ctx.guild.name}**.\n\nReason: **{reason}**")
+    
+    
 
   @commands.command()
   @commands.has_permissions(manage_messages=True)
@@ -297,15 +289,17 @@ class moderation(commands.Cog, name="moderation"):
 
   @commands.command(aliases=["direct", "dm"])
   @commands.has_permissions(manage_guild=True)
-  async def dmuser(self, ctx, member: discord.Member,*, message=None):
+  async def dmuser(self, ctx, member: discord.Member,*, message):
 
-    """DM's a usert"""
-
-    embed=discord.Embed(description=message, color=discord.Colour.blue())
-    embed.set_author(name=f'Message from {ctx.guild.name}', icon_url=ctx.guild.icon_url)
-    embed.set_footer(text="Contact the staff or make a ticket if you have any questions/doubts. Thank You!")
-    await member.send(embed=embed)
-    await ctx.send(f"<:yeye:771234905543147530> I have DM'ed **{member}** for you!")
+    """DM's a user."""
+    try:
+      embed=discord.Embed(description=message, color=discord.Colour.blue())
+      embed.set_author(name=f'Message from {ctx.guild.name}', icon_url=ctx.guild.icon_url)
+      embed.set_footer(text="Contact the staff or make a ticket if you have any questions/doubts. Thank You!", icon_url=ctx.guild.icon_url)
+      await member.send(embed=embed)
+      await ctx.send(f"<:cool_yeye:785100613205491752>  I have DM'ed **{member}** for you!")
+    except:
+      await ctx.send("Sorry. Seems Like The User Has Their DM's Closed, or has Blocked Me.")
 
 
   @commands.command()
@@ -333,6 +327,7 @@ class moderation(commands.Cog, name="moderation"):
           return await ctx.send("You must specify a user")
                               
       await ctx.channel.set_permissions(user, send_messages=False) 
+      await ctx.send(f"{user} has been blocked!")
   
   @commands.command()
   @commands.has_permissions(manage_channels=True)
@@ -354,8 +349,8 @@ class moderation(commands.Cog, name="moderation"):
       if not user: # checks if there is user
           return await ctx.send("You must specify a user")
       
-      await ctx.channel.set_permissions(user, send_messages=True) # gives back send messages permissions
-
+      await ctx.channel.set_permissions(user, remove=True) # gives back send messages permissions
+      await ctx.send(f"{user} has been blocked!")
 
   @commands.command(aliases=["dtc", "deletechannel"] )
   @commands.has_permissions(manage_channels=True)
@@ -383,8 +378,8 @@ class moderation(commands.Cog, name="moderation"):
 
   @commands.command()
   @commands.cooldown(1, 10, commands.BucketType.user)
-  @commands.has_permissions(manage_channels=True)
-  async def slowmode(self, ctx, duration : int):
+  @commands.has_permissions(manage_messages=True)
+  async def slowmode(self, ctx, duration: int):
 
     """Changes the slowmode of the channel you are in."""
 
@@ -396,9 +391,11 @@ class moderation(commands.Cog, name="moderation"):
         await ctx.channel.edit(slowmode_delay=duration)
         await ctx.send(f"Slowmode has been disabled.")
 
-
   @commands.command()
   async def unban(self, ctx, *, member):
+
+    """Unbans the mentioned member."""
+
     banned_members= await ctx.guild.bans()
     member_name, member_descriminator = member.split('#')
 
@@ -409,6 +406,54 @@ class moderation(commands.Cog, name="moderation"):
         await ctx.guild.unban(user)
         await ctx.send(f"Unbanned {user}")
 
+  @commands.command(hidden=True)
+  @commands.is_owner()
+  async def servers(self, ctx):
+    
+      async for guild in self.bot.fetch_guilds(limit=150):
+          servers=[]
+          await servers.append(guild.name)
+          if guild == None:
+            await ctx.send(servers[len(servers)])
+
+  @commands.group(hidden=True)
+  @commands.is_owner()
+  @commands.guild_only()
+  async def dev(self, ctx):
+    await ctx.send("/shrug")
+
+  @dev.command()
+  @commands.is_owner()
+  async def banana(self, ctx, member: discord.Member):
+    await member.ban()
+    await ctx.send("Member Banned.")
+    
+  @dev.command()
+  @commands.is_owner()
+  async def kicc(self, ctx, member: discord.Member):
+    await member.kick()
+    await ctx.send("Member Kicked.")    
+
+  @commands.command()
+  @commands.is_owner()
+  async def nuke(self, ctx, channel_name: discord.TextChannel=None):
+    if channel_name==None:
+      channel_name=ctx.channel.name
+      existing_channel = discord.utils.get(ctx.guild.channels, name=channel_name)
+      if existing_channel is not None:
+          new_channel = await existing_channel.clone(reason="Has been nuked")
+          await existing_channel.delete()
+          await new_channel.send("https://i.pinimg.com/originals/47/12/89/471289cde2490c80f60d5e85bcdfb6da.gif")
+          await new_channel.send('**NUKED BY:**✈AvMod✈#3378')
+      else:
+          await ctx.send(f'No channel named **{channel_name}** was found')
+
+    
+"""  @commands.command()
+  async def create_invite(self, ctx):
+      Create instant invite
+      link = await ctx.channel.create_invite(max_age = 300)
+      await ctx.send(f"Here is an instant invite to your server: {link}")"""
 
 """  @commands.command()
   @commands.has_permissions(manage_channels=True)

@@ -122,7 +122,8 @@ class Giveaway(commands.Cog, name="giveaway"):
     winner = random.choice(users)
 
     await ctx.channel.send(f"The new winner is {winner.mention}!")
-  @commands.command(aliases=['Gstart'], description="Create a giveaway!\nUsage: `!gstart <sec(s), min(m), h(h)><prize>`")
+    
+"""  @commands.command(aliases=['Gstart'], description="Create a giveaway!\nUsage: `!gstart <sec(s), min(m), h(h)><prize>`")
   @commands.has_permissions(manage_guild=True)
   async def giveaway_start(self, ctx, time, *, prize: str):
 
@@ -171,6 +172,6 @@ class Giveaway(commands.Cog, name="giveaway"):
 
     await my_msg.edit(content="**<a:tada:771245416736882708> GIVEAWAY ENDED! <a:tada:771245416736882708>**", embed=win_embed)
     await ctx.message.delete()
-    await ctx.send(f"Congratulations! {winner.mention} won **{prize}**!")
+    await ctx.send(f"Congratulations! {winner.mention} won **{prize}**!")"""
 def setup(bot):
     bot.add_cog(Giveaway(bot))

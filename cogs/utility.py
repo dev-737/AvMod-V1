@@ -10,15 +10,18 @@ from PIL import Image, ImageFont,ImageDraw
 import datetime
 from discord.ext import commands
 
-snipe_message_content = None
+"""snipe_message_content = None
 snipe_message_author = None
 snipe_message_id = None
-snipe_message_channel = None
+snipe_message_channel = None"""
 
-class utility(commands.Cog, name='utility'):
+class utility(commands.Cog):
+  """
+  This example uses tasks provided by discord.ext to create a task that posts guild count to top.gg every 30 minutes.
+  """
 
   def __init__(self, bot):
-            self.bot = bot
+      self.bot = bot
 
   @commands.command(aliases=['stat', 'info'])
   @commands.cooldown(1, 5, commands.BucketType.member)
@@ -265,7 +268,7 @@ class utility(commands.Cog, name='utility'):
 
 
 
-  @commands.Cog.listener()
+  """@commands.Cog.listener()
   async def on_message_delete(self, message):
 
       global snipe_message_content
@@ -290,6 +293,9 @@ class utility(commands.Cog, name='utility'):
   @commands.guild_only()
   @commands.cooldown(1, 10, commands.BucketType.member)
   async def snipe(self, message):
+
+      ""Displays the previously deleted message."
+
       if message.channel == snipe_message_channel:
           embed = discord.Embed(color=0x323232, description=f"{snipe_message_content}")
           embed.set_footer(text=f"Asked by {message.author.name}#{message.author.discriminator}", icon_url=message.author.avatar_url)
@@ -298,6 +304,6 @@ class utility(commands.Cog, name='utility'):
           return
       else: 
         await message.channel.send("Theres nothing to snipe.")
-
+"""
 def setup(bot):
     bot.add_cog(utility(bot))

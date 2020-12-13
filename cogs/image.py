@@ -2,6 +2,8 @@ import discord
 import os
 import random
 import aiohttp
+import json
+from aiohttp import request
 from PIL import Image, ImageFont,ImageDraw
 from discord.ext import commands
 
@@ -80,9 +82,50 @@ class images(commands.Cog, name='images'):
 
 
   @commands.command()
+  @commands.guild_only()
+  async def wasted(self, ctx, user: discord.Member=None):
+
+    """Put a wasted overlay on your or someone else\'s avatar!"""
+
+    if user is None:
+      user = ctx.author
+
+    with open("APIS.json", 'r') as f:
+      API = json.load(f)
+
+    avatar = str(user.avatar_url).replace('.webp', '.png').replace('.gif', '.png').replace('?size=1024', '?size=512')
+
+    UFAPI = f"{API['Wasted']}{avatar}"
+
+    async with request("GET", UFAPI, headers={}) as response:
+      if response.status == 200:
+
+        embed = discord.Embed(title="Wasted!!", description=f'[Image Link]({UFAPI})',color=discord.Colour.red())
+        embed.set_footer(text=f'Requested By {ctx.author}', icon_url=ctx.author.avatar_url)
+
+        embed.set_image(url=UFAPI)
+
+        await ctx.send(embed=embed)
+
+
+
+    @commands.command()
+    async def wink(self, ctx):
+
+      """Random Winking Gifs!"""
+
+      with open("APIS.json", 'r') as f:
+        WINK = json.load(f)
+        WINKO = f"{WINK['Wink']}"
+        await ctx.send(WINKO)
+
+
+
+
+"""  @commands.command()
   async def changemymind(self, ctx,*, message):
 
-    """Makes a simple drake meme."""
+    Makes a simple drake meme
 
     img = Image.open('cmm.png')
 
@@ -95,7 +138,7 @@ class images(commands.Cog, name='images'):
 
     img.save("cmmdun.png")
     await ctx.send(file = discord.File("cmmdun.png"))
-    os.remove("Drakey.png")
+    os.remove("Drakey.png")"""
 
 def setup(bot):
     bot.add_cog(images(bot))

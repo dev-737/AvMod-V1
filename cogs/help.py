@@ -13,7 +13,7 @@ class help(commands.Cog, name="help"):
     if str(ctx.guild.id) in data:
         prefix = data[str(ctx.guild.id)]
     else:
-        prefix = '!'
+        prefix = 'av!'
 
     if not cog:
       embed=discord.Embed(color=discord.Color.red(), description=f"**Guild Prefix:** `{prefix}`")

@@ -1,0 +1,10 @@
+{
+  "KanyeQuote" : "https://api.kanye.rest/",
+  "Useless Fact" : "https://uselessfacts.jsph.pl/random.json?language=en",
+  "Random Opinion" : "https://opinionated-quotes-api.gigalixirapp.com/v1/quotes",
+  "Wasted" : "https://some-random-api.ml/canvas/wasted/?avatar=",
+  "Wink" : "https://i.some-random-api.ml/7Rr2P6EZaw.gif",
+  "birdfact" : "https://some-random-api.ml/facts/bird",
+  "triggered" : "https://some-random-api.ml/canvas/triggered/?avatar=",
+  "chatbot" : "https://some-random-api.ml/chatbot/?message="
+} 

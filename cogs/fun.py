@@ -1,16 +1,12 @@
 import discord
-import platform
-import re
-import os
+import json
+from aiohttp import request
 import asyncio
 import random
-import urllib.parse
 import aiohttp
-from PIL import Image, ImageFont,ImageDraw
-import datetime
 from discord.ext import commands
 
-class utility(commands.Cog, name='utilities'):
+class fun(commands.Cog, name='fun'):
 
   def __init__(self, bot):
             self.bot = bot
@@ -42,6 +38,8 @@ class utility(commands.Cog, name='utilities'):
         　　ﾟ　　　.　　　. 　　　　.　 .'''
         
         ]
+    await ctx.send(f'{random.choice(responces)}')
+
   @commands.command()
   @commands.cooldown(1, 1, commands.BucketType.user)
   async def meme(self, ctx):
@@ -82,6 +80,29 @@ class utility(commands.Cog, name='utilities'):
     await ctx.send(f'{random.choice(hack_responces1)}')
 
 
+  @commands.command(aliases=["birdfacts"])
+  @commands.guild_only()
+  async def bird_facts(self, ctx):
 
+    """Random Bird Facts!"""
+
+    with open("APIS.json", 'r') as f:
+      API = json.load(f)
+
+    bird = API['birdfact']
+
+    async with request("GET", bird, headers={}) as response:
+      if response.status == 200:
+        data = await response.json()
+
+        embed = discord.Embed(title="FAX", description=f'{data["fact"]}', color=discord.Colour.red())
+
+        embed.set_footer(text=f'Requested By: {ctx.author}', icon_url=ctx.author.avatar_url)
+        embed.set_thumbnail(url="https://news.usc.edu/files/2019/11/Taiwan-Blue-Magpie-web.jpg")
+
+        await ctx.send(embed=embed)
+
+      else:
+        print(response.status)
 def setup(bot):
-    bot.add_cog(utility(bot))
+    bot.add_cog(fun(bot))
