@@ -1,5 +1,5 @@
 ![image](https://botlist.space/bot/761414234767884318/badge?property=tag&style=flat-square&color=brightgreen)
-
+![support](https://botlist.space/bot/761414234767884318/badge?property=support)
 
 # **AvMod**
 
