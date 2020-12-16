@@ -1,5 +1,8 @@
 ![image](https://botlist.space/bot/761414234767884318/badge?property=tag&style=flat-square&color=brightgreen)
-![support](https://botlist.space/bot/761414234767884318/badge?property=support)
+[![discord][1]][2]
+
+[1]:  https://botlist.space/bot/761414234767884318/badge?property=support
+[2]:  https://discord.gg/eJrTyEX
 
 # **AvMod**
 
