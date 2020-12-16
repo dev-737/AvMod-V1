@@ -1,3 +1,7 @@
+[![img][1]][2]
+
+[1]:  https://botlist.space/bot/761414234767884318/badge?property=tag
+[2]:  https://top.gg/bot/761414234767884318
 ![image](https://botlist.space/bot/761414234767884318/badge?property=tag&style=flat-square&color=brightgreen)
 [![discord][1]][2]
 
