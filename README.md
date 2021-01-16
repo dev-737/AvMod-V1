@@ -4,12 +4,11 @@
 
 [1]:  https://botlist.space/bot/761414234767884318/badge?property=tag
 [2]:  https://top.gg/bot/761414234767884318
+# 
+[![img][3]][4]
 
-[![dis][3]][4]
-
-[1]:  https://botlist.space/bot/761414234767884318/badge?property=support
-[2]:  https://discord.gg/eJrTyEX
-
+[3]:  https://botlist.space/bot/761414234767884318/badge?property=support
+[4]:  https://discord.gg/eJrTyEX
 #### Hey, AvMod is a growing multi-purpose bot, it was first built for aviation servers requiring an Aviation themed moderation bot. It does quite a few things. to list a few:
 
 - Moderation
