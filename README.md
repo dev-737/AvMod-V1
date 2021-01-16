@@ -23,12 +23,14 @@
 
 #### AvMod is being worked on everyday, which makes it get updates very quick, and this is not only a moderation bot but also a multi-purpose bot! It has its own speacial commands as well.
 
-### Features:
+### How-To
 
-#### Neat and Detailed Help Command:
+#### Use the help command to see all commands.
 > ![Help](https://media.discordapp.net/attachments/764862897830363146/797688566594666586/unknown.png) 
-#### Help For A Command:
+
+#### Don't know how to use a command? Use `av!help <command_name>` to get the command syntax and uses.
 > ![help command](https://media.discordapp.net/attachments/769570575659171871/797688806585270292/unknown.png)
+
 
 ### Lots of commands:
 
@@ -178,7 +180,7 @@
 <tr>
 <td>avatar</td>
 <td>Get your avatar link</td>
-<td>`avatar , avatar @user`</td>
+<td>`avatar` or `avatar @user`</td>
 </tr>
 <tr>
 <td>gcreate</td>
@@ -193,8 +195,7 @@
 <tr>
 <td>spotify</td>
 <td>Know what your listening within discord!</td>
-<td>`spotify</td>
-<td>spotify &lt;@user&gt;`</td>
+<td>`spotify`  or  `spotify @user`</td>
 </tr>
 <tr>
 <td>emojify</td>
