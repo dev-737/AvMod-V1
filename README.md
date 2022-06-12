@@ -1,4 +1,4 @@
-# **AvMod - The Discord Bot**
+# **AvMod Discord Bot**
 
 ## **NOTE: This bot has been discontinued and is no longer on the discord platform. You may use this code as a reference though.**
 
