@@ -1,8 +1,8 @@
-# **AvMod - The Discord Bot**
+# **AvMod Discord Bot**
 
 ## **NOTE: This bot is now discontinued and is no longer on the discord platform. You may use this code as a reference though.**
 
-Hey, AvMod is a growing multi-purpose bot, it was first built for aviation servers requiring an Aviation themed moderation bot. It does quite a few things. to list a few:
+ Hey, AvMod is a growing multi-purpose bot, it was first built for aviation servers requiring an Aviation themed moderation bot. It does quite a few things. to list a few:
 
 - Moderation
 - Fun commands
